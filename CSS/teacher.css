@@ -1,113 +1,104 @@
 :root {
-    --color-primary: #5ec576;
-    --color-secondary: #ffcb03;
-    --color-tertiary: #ff585f;
-    --color-primary-darker: #4bbb7d;
-    --color-secondary-darker: #ffbb00;
-    --color-tertiary-darker: #fd424b;
-    --color-primary-opacity: #5ec5763a;
-    --color-secondary-opacity: #ffcd0331;
-    --color-tertiary-opacity: #ff58602d;
-    --gradient-primary: linear-gradient(to top left, #39b385, #9be15d);
-    --gradient-secondary: linear-gradient(to top left, #ffb003, #ffcb03);
+  --color-primary: #5ec576;
+  --color-secondary: #ffcb03;
+  --color-tertiary: #ff585f;
+  --color-primary-darker: #4bbb7d;
+  --color-secondary-darker: #ffbb00;
+  --color-tertiary-darker: #fd424b;
+  --color-primary-opacity: #5ec5763a;
+  --color-secondary-opacity: #ffcd0331;
+  --color-tertiary-opacity: #ff58602d;
+  --gradient-primary: linear-gradient(to top left, #39b385, #9be15d);
+  --gradient-secondary: linear-gradient(to top left, #ffb003, #ffcb03);
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    font-size: 62.5%;
-    box-sizing: border-box;
+  font-size: 62.5%;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-    color: #444;
-    line-height: 1.9;
-    background-color: #f3f3f3;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  color: #444;
+  line-height: 1.9;
+  background-color: #f3f3f3;
 }
-
 
 /* NAVIGATION */
 .nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 9rem;
-    width: 100%;
-    padding: 0 6rem;
-    z-index: 100;
-  }
-  
-  /* nav and stickly class at the same time */
-  .nav.sticky {
-    position: fixed;
-    background-color: rgba(255, 255, 255, 0.95);
-  }
-  
-  .nav__logo {
-    height: 8.5rem;
-    transition: all 0.3s;
-  }
-  
-  .nav__links {
-    display: flex;
-    align-items: center;
-    list-style: none;
-  }
-  
-  .nav__item {
-    margin-left: 4rem;
-  }
-  
-  .nav__link:link,
-  .nav__link:visited {
-    font-size: 1.7rem;
-    font-weight: 400;
-    color: inherit;
-    text-decoration: none;
-    display: block;
-    transition: all 0.3s;
-  }
-  
-  .nav__link--btn:link,
-  .nav__link--btn:visited {
-    padding: 0.8rem 2.5rem;
-    border-radius: 3rem;
-    background-color: var(--color-primary);
-    color: #222;
-  }
-  
-  .nav__link--btn:hover,
-  .nav__link--btn:active {
-    color: inherit;
-    background-color: var(--color-primary-darker);
-    color: #333;
-  }
-  
-  .nav__link--btn--SignUP {
-    padding: 0.8rem 2.5rem;
-    border-radius: 3rem;
-    border: 2px solid var(--color-primary);
-  }
-  .nav__link--btn--SignUP:hover,
-  .nav__link--btn--SignUP:active {
-    background-color:#fff;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 9rem;
+  width: 100%;
+  padding: 0 6rem;
+  z-index: 100;
+}
 
+/* nav and stickly class at the same time */
+.nav.sticky {
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.95);
+}
 
+.nav__logo {
+  height: 8.5rem;
+  transition: all 0.3s;
+}
 
+.nav__links {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
 
+.nav__item {
+  margin-left: 4rem;
+}
 
+.nav__link:link,
+.nav__link:visited {
+  font-size: 1.7rem;
+  font-weight: 400;
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  transition: all 0.3s;
+}
 
+.nav__link--btn:link,
+.nav__link--btn:visited {
+  padding: 0.8rem 2.5rem;
+  border-radius: 3rem;
+  background-color: var(--color-primary);
+  color: #222;
+}
 
+.nav__link--btn:hover,
+.nav__link--btn:active {
+  color: inherit;
+  background-color: var(--color-primary-darker);
+  color: #333;
+}
 
-.control {
+.nav__link--btn--SignUP {
+  padding: 0.8rem 2.5rem;
+  border-radius: 3rem;
+  border: 2px solid var(--color-primary);
+}
+.nav__link--btn--SignUP:hover,
+.nav__link--btn--SignUP:active {
+  background-color: #fff;
+}
+
+/* .control {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -119,7 +110,6 @@ body {
 
 .control button {
     background-color: #4CAF50;
-    /* Green background */
     color: white;
     border: none;
     padding: 4px 6px;
@@ -131,7 +121,6 @@ body {
 
 .control button:hover {
     background-color: #2a752e;
-    /* Darker green on hover */
 }
 
 .control input[type="number"] {
@@ -141,270 +130,338 @@ body {
     text-align: center;
     border: 1px solid #ccc;
     border-radius: 8px;
-}
-
+} */
 
 .main-container {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 20px;
-    padding: 0 20px;
-    height: calc(100vh - 100px);
+  display: flex;
+  gap: 20px;
+  padding: 0 20px;
+  height: calc(100vh - 100px);
 }
 
-
 #pdfInput {
-    display: none;
+  display: none;
 }
 
 #file-label {
-    padding: 5px 10px;
-    width: 150px;
-    background-color:#132718 ;
-    border: 2px solid #132718;
-    color: #fff;
-    font-size: medium;
-    border: 2px solid none;
-    text-align: center;
-    margin: 20px;
-    cursor: pointer;
-    display: block;
-    transition: 0.5s;
+  padding: 5px 10px;
+  width: 75%;
+  background-color: #132718;
+  border: 2px solid #132718;
+  color: #fff;
+  font-size: medium;
+  border: 2px solid none;
+  text-align: center;
+  margin: 20px;
+  cursor: pointer;
+  display: block;
+  transition: 0.5s;
 }
 
 #file-label:hover {
-    background-color: #fff;
-    color: #132718;
+  background-color: #fff;
+  color: #132718;
 }
 
 .pdf-names-container {
-    margin: 0 20px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    padding-bottom: 20px;
+  position: relative;
+  width: 20%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: all .3s;
+  padding: 0 5px;
 }
-
-.pdf-names-container label {
-    justify-self: center;
+.toggle-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-
+.pdf-names-container .toggle {
+  color: #132718;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 5px;
+  top: 25px;
+}
+.try-hidden{
+ width: 0;
+ padding: 0 15px;
+}
+.try-hidden .toggle{
+ left: 0;
+}
+.try-hidden .pdf-list,
+.try-hidden #file-label {
+  display: none;
+}
 .pdf-list {
-    display: flex;
-    gap: 10px 10px;
-    flex-wrap: wrap;
-    list-style: none;
-    padding-left: 20px;
+  /* display: flex; */
+  /* gap: 10px 10px; */
+  /* flex-wrap: wrap; */
+  list-style: none;
+  /* padding-left: 20px; */
 }
 
 .pdf-list li {
-    padding: 4px 16px;
-    background-color: #387647;
-    color: #fff;
-    font-size: 1.4rem;
-    /* margin-right: 10px; */
-    border: 2px solid #387647;
-    border-radius: 100px;
-    cursor: pointer;
-    transition: all 0.3s;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+  background-color: #eee;
+  color: #000;
+  font-size: 1.4rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s;
 }
 
 .pdf-list li:hover {
-
-    background-color: #fff;
-    color: #387647;
+  background-color: #fff;
+  color: #000;
 }
-
 
 .pdf-viewer-container {
-    height: 800px;
-    /* overflow: hidden; */
-    border: 1px solid #ccc;
-    background-color: #525659;
-    border-radius: 6px;
+    flex: 2;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  /* height: 800px; */
+  /* overflow: scroll; */
 }
-
+#pdf-contents {
+  display: none;
+}
+#pdf-meta {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#pdf-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#pageNumber {
+  border: 2px solid slateblue;
+  width: 50%;
+  padding: 6px 12px;
+  outline: none;
+  font-weight: bold;
+}
+#pageNumber::placeholder {
+  color: #999;
+  font-weight: 400;
+  font-family: cursive;
+}
+#pdf-prev,
+#pdf-next {
+  border: 0;
+  padding: 7px 15px;
+  background-color: #6a5acd;
+  color: #fff;
+  transition: all 0.2s;
+}
+#pdf-prev:hover,
+#pdf-next:hover {
+  background-color: #6a5aee;
+  cursor: pointer;
+}
+#page-count-container {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+#pdf-current-page {
+  color: slateblue;
+  font-weight: bold;
+  margin: 0 5px;
+}
+#pdf-total-pages {
+  /* color: red; */
+  margin: 0 5px;
+  font-weight: bold;
+}
+#viewerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 #pdfViewer {
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  position: relative;
 }
 
 .text-selection {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* width: 20%; */
 }
 
 .text-area {
-    flex-grow: 1;
-    padding: 10px;
-    resize: none;
+  flex-grow: 1;
+  padding: 10px;
+  resize: none;
 }
 
 .btn--show-modal {
-    padding: 10px 20px;
-    background-color: #264f2f;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.3s;
+  padding: 10px 20px;
+  background-color: #264f2f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
 .btn--show-modal:hover {
-    background-color: #4b9e5e;
+  background-color: #4b9e5e;
 }
 
 /* PDF.js viewer styles */
 .textLayer {
-    opacity: 1;
-    mix-blend-mode: multiply;
-    pointer-events: auto;
+  opacity: 1;
+  mix-blend-mode: multiply;
+  pointer-events: auto;
 }
 
-.textLayer>span {
-    color: transparent;
-    position: absolute;
-    white-space: pre;
-    cursor: text;
-    transform-origin: 0% 0%;
+.textLayer > span {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
 }
 
 .textLayer ::selection {
-    background: rgba(255, 255, 0, 0.3);
+  background: rgb(106, 90, 205,.5);
 }
 
 /* Ensure text layer aligns properly */
-.textLayer>span {
-    border: solid 1px transparent;
-    line-height: 1;
-    padding: 0;
-    margin: 0;
+.textLayer > span {
+  border: solid 1px transparent;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
 }
 
-.textLayer>span:hover {
-    background: rgba(255, 255, 0, 0.1);
+.textLayer > span:hover {
+  background: rgba(255, 255, 0, 0.1);
 }
 
 /* Highlight layer styles */
 .highlight-layer {
-    position: absolute;
-    pointer-events: none;
-    z-index: 1;
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
 }
-
-
-
-
 
 /* MODAL WINDOW */
 .modal--generate {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width:700px;
-    max-height: 700px;
-    background-color: #f3f3f3;
-    padding: 5rem 6rem;
-    box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.3);
-    z-index: 1000;
-    transition: all 0.5s;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 700px;
+  max-height: 700px;
+  background-color: #f3f3f3;
+  padding: 5rem 6rem;
+  box-shadow: 0 4rem 6rem rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: all 0.5s;
 }
 
-.overlay
-{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
-    z-index: 100;
-    transition: all 0.5s;
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  transition: all 0.5s;
 }
 
 .question {
-    font-size: 2.4rem;
-    line-height: 1.1;
-    font-weight: bold;
-    margin-bottom: 25px;
+  font-size: 2.4rem;
+  line-height: 1.1;
+  font-weight: bold;
+  margin-bottom: 25px;
 }
 
 .answer {
-    font-size: 1.5rem;
-    line-height: 1.2;
-    margin-bottom: 20px;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin-bottom: 20px;
 }
 
-
-.btn--close{
-font-family: inherit;
-color: inherit;
-position: absolute;
-top: 0.5rem;
-right: 2rem;
-font-size: 4rem;
-cursor: pointer;
-border: none;
-background: none;
+.btn--close {
+  font-family: inherit;
+  color: inherit;
+  position: absolute;
+  top: 0.5rem;
+  right: 2rem;
+  font-size: 4rem;
+  cursor: pointer;
+  border: none;
+  background: none;
 }
 
 /* Container styling */
 .btns {
-    display: flex;
-    gap: 15px;
-    justify-content: space-between;
-    
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
 }
 
 /* General button styling */
 .btn {
-    flex: 1;
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+  flex: 1;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 /* Accept button styling */
 .btn--Accept {
-    background-color: #4CAF50; /* Green */
+  background-color: #4caf50; /* Green */
 }
 
 .btn--Accept:hover {
-    background-color: #45a049; /* Darker green */
-    transform: scale(1.05);
+  background-color: #45a049; /* Darker green */
+  transform: scale(1.05);
 }
 
 /* Try Again button styling */
 .btn--again {
-    background-color: #FFA500; /* Orange */
+  background-color: #ffa500; /* Orange */
 }
 
 .btn--again:hover {
-    background-color: #e69500; /* Darker orange */
-    transform: scale(1.05);
+  background-color: #e69500; /* Darker orange */
+  transform: scale(1.05);
 }
 
 /* Cancel button styling */
 .btn--cancel {
-    background-color: #f44336; /* Red */
+  background-color: #f44336; /* Red */
 }
 
 .btn--cancel:hover {
-    background-color: #d73727; /* Darker red */
-    transform: scale(1.05);
+  background-color: #d73727; /* Darker red */
+  transform: scale(1.05);
 }
 
-
 .hidden {
-    visibility: hidden;
-    opacity: 0;
+  visibility: hidden;
+  opacity: 0;
 }
