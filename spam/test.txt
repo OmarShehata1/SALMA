@@ -1,0 +1,345 @@
+
+// async function renderPage(pageNumber) {
+//     try {
+//         const page = await currentPdf.getPage(pageNumber);
+//         const container = document.getElementById("pdfViewer");
+//         const containerWidth = container.clientWidth;
+//         const viewport = page.getViewport({ scale: 1.0 });
+//         const scale = (containerWidth / viewport.width) * 0.95;
+
+//         const scaledViewport = page.getViewport({ scale });
+
+//         // Update PDFViewer application with current viewport
+//         PDFViewerApplication.pdfViewer.viewport = scaledViewport;
+//         PDFViewerApplication.pdfViewer.currentPageNumber = pageNumber;
+
+//         container.innerHTML = "";
+
+//         const wrapper = document.createElement("div");
+//         wrapper.style.position = "relative";
+//         wrapper.style.width = `${scaledViewport.width}px`;
+//         wrapper.style.height = `${scaledViewport.height}px`;
+
+//         const canvas = document.createElement("canvas");
+//         const context = canvas.getContext("2d", { alpha: false });
+//         canvas.height = scaledViewport.height;
+//         canvas.width = scaledViewport.width;
+//         canvas.style.display = "block";
+
+//         const textLayerDiv = document.createElement("div");
+//         textLayerDiv.className = "textLayer";
+
+//         Object.assign(textLayerDiv.style, {
+//             width: `${scaledViewport.width}px`,
+//             height: `${scaledViewport.height}px`,
+//             position: "absolute",
+//             left: "0",
+//             top: "0",
+//             transform: "scale(1, 1)",
+//             transformOrigin: "0 0",
+//         });
+
+//         wrapper.appendChild(canvas);
+//         wrapper.appendChild(textLayerDiv);
+//         container.appendChild(wrapper);
+
+//         const renderContext = {
+//             canvasContext: context,
+//             viewport: scaledViewport,
+//             enableWebGL: true,
+//             renderInteractiveForms: true,
+//         };
+
+//         await page.render(renderContext).promise;
+
+//         const textContent = await page.getTextContent();
+//         await pdfjsLib.renderTextLayer({
+//             textContent: textContent,
+//             container: textLayerDiv,
+//             viewport: scaledViewport,
+//             textDivs: [],
+//         }).promise;
+
+//         // Add selection event listener
+//         textLayerDiv.addEventListener("mouseup", function () {
+//             const selection = window.getSelection();
+//             if (!selection.isCollapsed) {
+//                 try {
+//                     const selectedText = selection.toString();
+//                     document.getElementById("selectedText").value = selectedText;
+
+//                     // Get and show highlight
+//                     const highlightData = getHighlightCoords();
+//                     showHighlight(highlightData);
+//                 } catch (error) {
+//                     console.error("Error handling selection:", error);
+//                 }
+//             }
+//         });
+//     } catch (error) {
+//         console.error("Error rendering page:", error);
+//         console.log(error.stack);
+//         alert("Error rendering PDF page. Check console for details.");
+//     }
+// }
+
+// // Submit button event listener
+// document.querySelector(".btn-a").addEventListener("click", function () {
+//     const selectedText = document.getElementById("selectedText").value;
+//     console.log("Selected text:", selectedText);
+//     // Add your submission logic here
+// });
+
+// // Add resize handler
+// const resizeObserver = new ResizeObserver(
+//     debounce(() => {
+//         if (currentPdf) {
+//             renderPage(currentPage);
+//         }
+//     }, 250)
+// );
+
+// // Observe the PDF viewer container
+// resizeObserver.observe(document.getElementById("pdf-canvas"));
+
+// // Debounce helper function
+// function debounce(func, wait) {
+//     let timeout;
+//     return function executedFunction(...args) {
+//         const later = () => {
+//             clearTimeout(timeout);
+//             func(...args);
+//         };
+//         clearTimeout(timeout);
+//         timeout = setTimeout(later, wait);
+//     };
+// }
+
+// // Load the PDF document
+// pdfjsLib.getDocument(url).promise.then((pdfDoc_) => {
+//     let pdfDoc = pdfDoc_;
+//     totalPages = pdfDoc.numPages;
+//     currentPage = 1;
+
+//     // Set the min and max for the page number input
+//     const pageNumberInput = document.getElementById('pageNumber');
+//     pageNumberInput.min = 1;
+//     pageNumberInput.max = totalPages;
+
+//     // Render the initial page
+//     renderPage(currentPage);
+// });
+
+// // Navigation button events
+// let btn_prev = document.getElementById('pdf-prev');
+// let btn_next = document.getElementById('pdf-next');
+
+// btn_prev.addEventListener('click', function() {
+//     if (currentPage > 1) {
+//         currentPage -= 1;
+//         renderPage(currentPage);
+//     }
+// });
+
+// btn_next.addEventListener('click', function() {
+//     if (currentPage < totalPages) {
+//         currentPage += 1;
+//         renderPage(currentPage);
+//     }
+// });
+
+// // Input field change event for direct page navigation
+// document.getElementById('pageNumber').addEventListener('change', function() {
+//     const pageNum = parseInt(this.value);
+//     if (pageNum >= 1 && pageNum <= totalPages) {
+//         currentPage = pageNum;
+//         renderPage(currentPage);
+//     } else {
+//         // Reset input to the current page if out of range
+//         this.value = currentPage;
+//     }
+// });
+
+
+
+// var __PDF_DOC,
+// __CURRENT_PAGE,
+// __TOTAL_PAGES,
+// __PAGE_RENDERING_IN_PROGRESS = 0,
+// __CANVAS = $("#pdf-canvas").get(0),
+// __CANVAS_CTX = __CANVAS.getContext("2d"),
+// PDFJS = window["pdfjs-dist/build/pdf"];
+
+// PDFJS.GlobalWorkerOptions.workerSrc =
+// "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.5.141/pdf.worker.min.js";
+
+// function showPDF(pdf_url) {
+// $("#pdf-loader").show();
+
+// PDFJS.getDocument({ url: pdf_url })
+//   .promise.then(function (pdf_doc) {
+//     __PDF_DOC = pdf_doc;
+//     __TOTAL_PAGES = __PDF_DOC.numPages;
+
+//     // Hide the pdf loader and show pdf container in HTML
+//     $("#pdf-loader").hide();
+//     $("#pdf-contents").show();
+//     $("#pdf-total-pages").text(__TOTAL_PAGES);
+
+//     // Show the first page
+//     showPage(1, 1.5);
+//   })
+//   .catch(function (error) {
+//     // If error re-show the upload button
+//     $("#pdf-loader").hide();
+//     $("#upload-button").show();
+
+//     alert(error.message);
+//   });
+// }
+
+// function showPage(page_no, PageScale) {
+// __PAGE_RENDERING_IN_PROGRESS = 1;
+// __CURRENT_PAGE = page_no;
+
+// // Disable Prev & Next buttons while page is being loaded
+// $("#pdf-next, #pdf-prev").attr("disabled", "disabled");
+
+// // While page is being rendered hide the canvas and show a loading message
+// $("#pdf-canvas").hide();
+// $("#page-loader").show();
+
+// // Update current page in HTML
+// $("#pdf-current-page").text(page_no);
+
+// // Fetch the page
+// __PDF_DOC.getPage(page_no).then(function (page) {
+//   // Get viewport of the page at required scale
+//   let viewport = page.getViewport({
+//     scale: PageScale,
+//   });
+
+//   // As the canvas is of a fixed width we need to set the scale of the viewport accordingly
+//   let scale = __CANVAS.width / viewport.width;
+//   viewport = page.getViewport({
+//     scale: PageScale,
+//   });
+
+//   // Set canvas height
+//   __CANVAS.height = viewport.height;
+//   __CANVAS.width = viewport.width;
+
+//   var renderContext = {
+//     canvasContext: __CANVAS_CTX,
+//     viewport: viewport,
+//   };
+
+//   // Render the page contents in the canvas
+//   page
+//     .render(renderContext)
+//     .promise.then(function () {
+//       __PAGE_RENDERING_IN_PROGRESS = 0;
+
+//       // Re-enable Prev & Next buttons
+//       $("#pdf-next, #pdf-prev").removeAttr("disabled");
+
+//       // Show the canvas and hide the page loader
+//       $("#pdf-canvas").show();
+//       $("#page-loader").hide();
+
+//       // Return the text contents of the page after the pdf has been rendered in the canvas
+//       return page.getTextContent();
+//     })
+//     .then(function (textContent) {
+//       // Get canvas offset
+//       var canvas_offset = $("#pdf-canvas").offset();
+//       console.log(
+//         canvas_offset.left,
+//         canvas_offset.top,
+//         "canvas offset"
+//       );
+
+//       // Clear HTML for text layer
+//       $("#text-layer").html("");
+
+//       // Assign the CSS created to the text-layer element
+//       document
+//         .getElementById("text-layer")
+//         .style.setProperty("--scale-factor", viewport.scale);
+//       $("#text-layer").css({
+//         left: canvas_offset.left + "px",
+//         top: canvas_offset.top + "px",
+//       });
+
+//       // Pass the data to the method for rendering of text over the pdf canvas.
+//       PDFJS.renderTextLayer({
+//         textContentSource: textContent,
+//         container: $("#text-layer").get(0),
+//         viewport: viewport,
+//         textDivs: [],
+//       });
+//     });
+// });
+// }
+
+// // Upon click this should should trigger click on the #file-to-upload file input element
+// // This is better than showing the not-good-looking file input element
+// $("#upload-button").on("click", function () {
+// $("#file-to-upload").trigger("click");
+// });
+
+// // When user chooses a PDF file
+// $("#file-to-upload").on("change", function () {
+// // Validate whether PDF
+// if (
+//   ["application/pdf"].indexOf(
+//     $("#file-to-upload").get(0).files[0].type
+//   ) == -1
+// ) {
+//   alert("Error : Not a PDF");
+//   return;
+// }
+
+// $("#upload-button").hide();
+
+// // Send the object url of the pdf
+// showPDF(URL.createObjectURL($("#file-to-upload").get(0).files[0]));
+// });
+
+// // Previous page of the PDF
+// $("#pdf-prev").on("click", function () {
+// if (__CURRENT_PAGE != 1) showPage(--__CURRENT_PAGE, 1.5);
+// });
+
+// // Next page of the PDF
+// $("#pdf-next").on("click", function () {
+// if (__CURRENT_PAGE != __TOTAL_PAGES) showPage(++__CURRENT_PAGE, 1.5);
+// });
+
+// //   add event listener for text selection
+// document.addEventListener("selectionchange", () => {
+// const selection = window.getSelection();
+// console.log(selection.toString());
+// });
+
+// document.addEventListener("keydown", function (event) {
+// if (event.key === "ArrowRight" && __CURRENT_PAGE < __TOTAL_PAGES) {
+//   showPage(__CURRENT_PAGE + 1, 1.5);
+// } else if (event.key === "ArrowLeft" && __CURRENT_PAGE > 1) {
+//   showPage(__CURRENT_PAGE - 1, 1.5);
+// }
+// });
+// // add event for when user zooms in or out not scroll
+// document.addEventListener("wheel", function (event) {
+// if (event.ctrlKey) {
+//   if (event.deltaY < 0) {
+//     showPage(__CURRENT_PAGE, 1.5);
+//   } else {
+//     showPage(__CURRENT_PAGE, 1.5);
+//   }
+// }
+// });
+// window.addEventListener("resize", function () {
+// // Recalculate the viewport scale and re-render the page
+// showPage(__CURRENT_PAGE, 1.5);
+// });
