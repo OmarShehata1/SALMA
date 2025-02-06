@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SALMA–Automated Exam Evaluation</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="imgs/fav.svg">
+    <link rel="stylesheet" href="CSS/evaluation.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="nav">
+                <img src="imgs/logo1.svg"
+                  alt="SALMA logo"
+                  class="nav__logo"
+                  id="logo"
+                  designer="Nordin"
+                  data-version-number="3.0"
+                />
+                <ul class="nav__links">
+                  <li class="nav__item">
+                    <a class="nav__link" href="index.html">Home</a>
+                  </li>
+                  <li class="nav__item">
+                    <a class="nav__link" href="Blog.html">Blog</a>
+                  </li>
+                  <li class="nav__item">
+                    <a class="nav__link" href="teacher.html">Teacher</a>
+                  </li>
+                </ul>
+              </nav>
+            <h1>Automated Exam Evaluation</h1>
+        </header>
+
+        <div class="main-content">
+            <section class="upload-section">
+                <h2>Upload Your Exam</h2>
+                <div class="file-upload" id="fileUpload">
+                    <p>Drag and drop your exam file here, or click to select</p>
+                    <input type="file" id="examFile" accept=".pdf,.jpg,.png">
+                </div>
+                <img id="preview" class="preview" src="/placeholder.svg" alt="Exam preview" style="display: none;">
+            </section>
+
+            <section class="results-section">
+                <div class="results-header">
+                    <h2>Exam Results</h2>
+                    <button class="btn" id="startCorrection">Start Correction</button>
+                </div>
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p>Processing your exam...</p>
+                </div>
+                <div id="results" style="display: none;">
+                    <div class="final-score" id="finalScore"></div>
+                    <button class="btn" id="retryButton">Retry</button>
+                </div>
+            </section>
+        </div>
+
+        <section class="table-section" id="tableSection" style="display: none;">
+            <h2>Detailed Results</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsTable"></tbody>
+            </table>
+        </section>
+    </div>
+
+    <script src="JS/exam.js"></script>
+</body>
+</html>

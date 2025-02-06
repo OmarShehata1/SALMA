@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Intelligent exam </title>
+    <link rel="icon" type="image/png" href="imgs/fav.svg">
+    <link rel="stylesheet" href="CSS/teacher.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=download" />
+  </head>
+<body>
+    <nav class="top-nav">
+      <img src="imgs/logo1.svg"
+      alt="SALMA logo"
+      class="nav__logo"
+      id="logo"
+      designer="Nordin"
+      data-version-number="3.0"
+      width="60"
+    />
+        <div class="nav-links">
+          <a href="user-profile.html" ><i class="fas fa-user user-icon"></i></a>
+        </div>
+    </nav>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>PDF List</h2>
+            <div class="upload-container">
+                <input type="file" id="pdf-upload" accept=".pdf" multiple>
+                <label for="pdf-upload" class="upload-btn">Upload PDFs</label>
+            </div>
+            <ul id="pdf-list">
+                <!-- PDF list items will be dynamically added here -->
+            </ul>
+        </aside>
+        <main class="content">
+
+          <section class="bar" >
+
+            <h4 class="pdf-name"></h4>
+            <div class="controls">
+              <button id="prev-page">Previous Page</button>
+              <input type="number" id="page-number" min="1" value="1">
+              <button id="next-page">Next Page</button>
+          </div>
+            <ul>
+              <li><a class="download-exam" href="#"><span class="material-symbols-outlined">
+                download
+                </span> </a></li>
+              <li><a class="create-exam" href="#"><i class="fas fa-plus"></i> </a></li>
+            </ul>
+          </section>
+            <div id="pdf-viewer">
+                <canvas id="pdf-canvas"></canvas>
+            </div>
+            <!-- <div class="controls">
+                <button id="prev-page">Previous Page</button>
+                <input type="number" id="page-number" min="1" value="1">
+                <button id="next-page">Next Page</button>
+            </div> -->
+        </main>
+    </div>
+
+   
+   
+    <div class="modal--accept hidden">
+      <div>
+        <button class="btn--close2">&times;</button>
+      </div>
+        <div class="btns">
+        <button class="btn btn--generate">Generate</button>
+        <button class="btn btn--cancel2">Cancel</button>
+      </div>
+    </div>
+
+    <div class="modal--generate hidden"> 
+      <form id="questionForm" class="question-form">
+        <div>
+            <label>
+                <input type="checkbox" name="question" value="Question 1: Answer A" data-question="Question 1" data-answer="Answer A">
+                <b>Question 1 ?</b>
+                <br>
+                Answer A
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="checkbox" name="question" value="Question 2: Answer B" data-question="Question 2" data-answer="Answer B">
+                <b>Question 2 ?</b>
+                <br>
+                Answer b
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="checkbox" name="question" value="Question 3: Answer C" data-question="Question 3" data-answer="Answer C">
+                <b>Question 3 ?</b>
+                <br>
+                Answer c
+            </label>
+        </div>
+  
+        <div class="btns">
+          <button type="button" class="btn btn--Accept" onclick="submitForm()">Accept</button>
+          <button class="btn btn--cancel">Cancel</button>
+        </div>
+    </form>
+
+    </div>
+    <div class="overlay hidden"></div>
+    <script src="JS/teacher.js"></script>
+    <script src="JS/pdf.js"></script>
+</body>
+</html>

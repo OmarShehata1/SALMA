@@ -1,0 +1,323 @@
+:root {
+  --primary-color: #1a2634;
+  --text-color: #ffffff;
+  --accent-color: #3498db;
+  --sidebar-width: 250px;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+.top-nav {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.user-icon {
+  font-size: 1.5rem;
+  color: #fff;
+  transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.user-icon:hover {
+  color: var(--accent-color);
+}
+
+.container {
+  display: flex;
+  height: calc(100vh - 60px);
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  height: 1200px;
+}
+
+#pdf-viewer {
+  flex-grow: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: relative;
+  overflow: auto;
+}
+
+#pdf-canvas {
+  position: absolute;
+}
+
+#text-layer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  opacity: 0.2;
+  line-height: 1;
+}
+
+#text-layer > span {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+}
+
+#text-layer > span::selection {
+  background-color: rgb(4, 0, 255);
+}
+
+.bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bar h4 {
+  margin: 0;
+}
+
+.bar ul {
+  display: flex;
+  justify-content:end;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
+}
+
+.bar a {
+  
+  color: #fff;
+}
+
+
+.placeholder-text {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+button,
+.upload-btn {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:not(.btn--close2):hover,
+.upload-btn:hover {
+  background-color: #2980b9;
+}
+
+input[type="number"] {
+  width: 50px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-color);
+  border: 1px solid var(--accent-color);
+  padding: 0.5rem;
+}
+
+#pdf-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+#pdf-list li {
+  cursor: pointer;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s;
+}
+
+#pdf-list li:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.upload-container {
+  margin-bottom: 1rem;
+}
+
+#pdf-upload {
+  display: none;
+}
+
+.upload-btn {
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Modal Styles */
+.modal--accept {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  top: 50%;
+  width: 300px;
+  height: 120px;
+  background-color: var(--primary-color);
+  border-radius: 5px;
+}
+
+.btn--close2 {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: var(--text-color);
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 10px;
+}
+.btn--close2:hover {
+  color: var(--accent-color);
+  background-color: none;
+}
+
+.modal--generate {
+  position: fixed;
+  z-index: 1000;
+  left: 38%;
+  top: 30%;
+  min-width: 500px;
+  min-height: 500px;
+  /* background-color: rgba(0, 0, 0, 0.4); */
+}
+
+.modal--generate.show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal--generate .question-form {
+  background-color: var(--primary-color);
+  padding: 20px;
+  border: 1px solid var(--accent-color);
+  border-radius: 5px;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+}
+
+.question-form div {
+  margin-bottom: 15px;
+}
+
+.question-form label {
+  display: block;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.question-form input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.question-form b {
+  color: var(--accent-color);
+}
+
+.btns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn--Accept,
+.btn--generate {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+}
+
+.btn--Accept:hover {
+  background-color: #2980b9;
+}
+
+.btn--again,
+.btn--cancel,
+.btn--cancel2 {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-color);
+}
+
+.btn--again:hover,
+.btn--cancel:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  transition: all 0.5s;
+}

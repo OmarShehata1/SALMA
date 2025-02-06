@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Proposal - SALMA</title>
+    <link rel="stylesheet" href="CSS/Blog.css">
+    <link rel="icon" type="image/png" href="imgs/fav.svg">
+</head>
+<body>
+    
+    <header>
+        <h1>Graduation Project Documentation</h1>
+    </header>
+
+    <section id="project-title">
+        <h2>Project Title</h2>
+        <p><strong>Project Name:</strong> SALMA: System for Automated Learning and Multi-Agent Assessment: An Intelligent Approach to Exam Generation and Evaluation</p>
+    </section>
+
+    <section id="principal-investigator">
+        <h2>Principal Investigator Information</h2>
+        <p><strong>Name:</strong> Professor Mohamed Moawad</p>
+        <p><strong>Title/Role:</strong> Head of Control and Computer Systems Department</p>
+        <p><strong>University Name:</strong> Mansoura University</p>
+    </section>
+
+    <section id="abstract">
+        <h2>Abstract</h2>
+        <p>
+            This project presents an intelligent system for the automated grading of written exams and the generation of new exam questions, designed to streamline assessment processes and enhance educational efficiency. The system comprises two core components: automated grading and question generation. For the grading component, handwritten student responses are digitized using an optical character recognition (OCR) model, which accurately extracts textual data from scanned answer sheets. This text is then processed through a multi-agent system, which compares student responses to ideal answers using predefined grading criteria. The multi-agent architecture ensures robust and fair evaluation by leveraging diverse decision-making agents to evaluate different aspects of the answers, such as completeness, accuracy, and relevance.
+        </p>
+        <p>
+            The question generation component utilizes an agent-based framework to analyze provided educational material, such as lecture slides or textbooks in PDF format. The system identifies key concepts and themes within the content and generates a variety of question formats, including multiple-choice and short-answer questions. By integrating contextual understanding and multi-agent collaboration, the system creates well-structured exam questions aligned with the given material.
+        </p>
+        <p>
+            A significant aspect of this project is its focus on Arabic language support, alongside English. To enhance the performance of the Arabic OCR model, we aim to create the largest open-source handwritten Arabic dataset, with a size ten times larger than existing datasets. This dataset will contribute to advancing Arabic OCR capabilities and facilitate broader research in the field.
+        </p>
+        <p>
+            The proposed system is implemented using modern frameworks, including PyTorch and Node.js, ensuring scalability and ease of integration into existing academic workflows. This project demonstrates a practical application of AI in education, significantly reducing the time and effort required for exam grading and preparation while maintaining high standards of fairness and quality in assessments.
+        </p>
+    </section>
+
+    <section id="keywords">
+        <h2>Project Keywords</h2>
+        <ul>
+            <li>Multi-agents</li>
+            <li>OCR</li>
+            <li>NLP</li>
+            <li>Multi-lingual</li>
+            <li>Computer vision</li>
+        </ul>
+    </section>
+
+    <section id="nvidia-platforms">
+        <h2>NVIDIA Platforms</h2>
+        <p>
+            For this project, we plan to use NVIDIA GPUs, specifically models such as the NVIDIA A100, to accelerate the training of our deep learning models, including OCR and natural language processing tasks. NVIDIA Triton Inference Server will be used for scalable and efficient model serving in production environments.
+        </p>
+    </section>
+
+    <section id="dataset-and-model">
+        <h2>Dataset and Model</h2>
+        <p>
+            <strong>Data used to train OCR model:</strong><br>
+            Type: image-text pair.<br>
+            Collection: from public institutions mostly by students writing an extra piece of paper.<br>
+            Data does not contain any personal data and is not confidential and will be open-sourced.<br>
+            The number of parameters for the OCR model we intend to use (TROCR) is 650 million.<br>
+            The physical copy of the data will be stored at Mansoura University and will also be stored online on Google Drive.
+        </p>
+    </section>
+
+    <section id="introduction">
+        <h2>Introduction</h2>
+        <p>
+            This project aims to develop an intelligent system for the automated grading of written exams and the generation of exam questions, with a special focus on supporting handwritten Arabic text. The grading component will use advanced optical character recognition (OCR) models to digitize handwritten responses, which will then be analyzed by a multi-agent system to provide fair and accurate evaluations based on predefined criteria. The question generation component will employ an agent-based framework to create contextually relevant questions by analyzing educational content, such as PDFs or lecture materials. This system will support both Arabic and English, ensuring accessibility for diverse educational institutions.
+        </p>
+        <p>
+            The importance of this project lies in addressing critical challenges in educational assessment. Automated grading systems can significantly reduce the time and effort required by educators, enabling them to focus on teaching. Moreover, the system’s ability to generate exam questions aligned with course material ensures a consistent and efficient exam preparation process. With its support for handwritten Arabic text—a language currently underserved by existing AI systems—this project holds particular significance for the Arab world, where a substantial amount of academic content is written manually.
+        </p>
+        <p>
+            One groundbreaking aspect of this project is the development of the largest open-source handwritten Arabic dataset, with a size ten times larger than current datasets. This resource will not only enhance the accuracy of our OCR models but also contribute to the broader AI and research communities by addressing the scarcity of high-quality Arabic datasets.
+        </p>
+        <p>
+            By automating tedious processes, improving accessibility, and advancing AI capabilities in Arabic NLP and OCR, this project will fill a significant gap in educational technology and set a new standard for intelligent exam systems.
+        </p>
+    </section>
+
+    <section id="methods">
+        <h2>Methods</h2>
+        <p>
+            Our project employs a multi-faceted technical approach to build an intelligent system for automated exam grading and question generation. Below, we outline the methodologies and tools used:
+        </p>
+        <ol>
+            <li>
+                <strong>Optical Character Recognition (OCR):</strong><br>
+                A deep learning-based OCR model will be trained to extract text from handwritten exam sheets. For Arabic text recognition, we aim to train a custom model using a Vision text transformer (TROCR). The model will be fine-tuned on the largest open-source Arabic handwritten dataset we plan to develop.
+            </li>
+            <li>
+                <strong>Multi-Agent Grading System:</strong><br>
+                Grading will be conducted using a multi-agent architecture, where individual agents analyze answers based on criteria such as correctness, structure, and completeness. The agents will use their ability to reason and understanding to compare extracted answers to ideal ones.
+            </li>
+            <li>
+                <strong>Question Generation System:</strong><br>
+                A multi-agent system will generate questions by analyzing input materials (PDFs, slides) using transformer-based models such as Llama3 or even GPT-4. Agents will generate and evaluate multiple question formats, including multiple-choice and short-answer questions.
+            </li>
+            <li>
+                <strong>Integration and Scalability:</strong><br>
+                The system will be deployed using NVIDIA Triton Inference Server to serve the models efficiently, enabling scalability and low-latency responses. The development pipeline will incorporate Dockerized NVIDIA NGC containers for streamlined experimentation and deployment.
+            </li>
+        </ol>
+    </section>
+
+    <section id="expected-results">
+        <h2>Expected Results</h2>
+        <p>
+            Our project aims to deliver a fully functional system for automated grading and question generation before May 2025. This system will incorporate advanced OCR models, multi-agent grading, and question generation frameworks, with a particular focus on Arabic handwritten text. The anticipated outcomes include a detailed research paper, which will be submitted to a leading AI or educational technology conference for publication.
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Aean Team . All rights reserved.</p>
+    </footer>
+</body>
+</html>

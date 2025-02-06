@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Profile</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #1a2634;
+        color: #ffffff;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .profile-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+      .profile-picture {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 30px;
+      }
+      .profile-name {
+        font-size: 2.5em;
+        margin: 0;
+      }
+      .profile-info {
+        background-color: #2a3a4a;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      .profile-info h2 {
+        margin-top: 0;
+      }
+      .edit-btn,
+      .change-password-btn,
+      .save-btn {
+        background-color: #4a90e2;
+        color: #ffffff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        margin-right: 10px;
+      }
+      .edit-btn:hover,
+      .change-password-btn:hover,
+      .save-btn:hover {
+        background-color: #3a7bc8;
+      }
+      .hidden {
+        display: none !important;
+      }
+      .editable {
+        padding: 5px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+      .editable:hover {
+        background-color: #3a4a5a;
+      }
+      .editing {
+        background-color: #3a4a5a;
+        outline: none;
+      }
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      input[type="password"],
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        background-color: #f8f8f8;
+        color: #333;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        color: #ffffff;
+      }
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+      .modal {
+        background-color: #2a3a4a;
+        padding: 40px;
+        border-radius: 10px;
+        width: 300px;
+        position: relative;
+      }
+      .modal h2 {
+        margin-top: 0;
+      }
+      .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        color: #ffffff;
+        font-size: 2.5rem;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="profile-header">
+        <img
+          src="imgs/fav2.svg"
+          alt="Profile Picture"
+          class="profile-picture"
+          id="profile-picture"
+        />
+        <h1
+          class="profile-name editable"
+          id="profile-name"
+          contenteditable="false"
+        >
+          SALMA
+        </h1>
+      </div>
+      <div class="profile-info">
+        <h2>About Me</h2>
+        <p class="editable" id="about-me" contenteditable="false">
+          Hello! SALMA :<br />
+          System for Automated Learning and Multi-Agent Assessment An
+          Intelligent Approach to Exam Generation and Evaluation.
+        </p>
+      </div>
+      <div class="profile-info">
+        <h2>Contact Information</h2>
+        <p>
+          Email:
+          <span class="editable" id="email" contenteditable="false"
+            >SALMA@example.com</span
+          >
+        </p>
+        <p>
+          Phone:
+          <span class="editable" id="phone" contenteditable="false"
+            >+1 (555) 123-4567</span
+          >
+        </p>
+      </div>
+      <button class="edit-btn" id="edit-btn">Edit Profile</button>
+      <button class="save-btn hidden" id="save-btn">Save Changes</button>
+      <button class="change-password-btn" id="change-password-btn">
+        Change Password
+      </button>
+    </div>
+
+    <div id="password-modal" class="overlay hidden">
+      <div class="modal">
+        <button class="close-btn" id="close-modal">&times;</button>
+        <h2>Change Password</h2>
+        <label for="current-password">Current Password:</label>
+        <input type="password" id="current-password" />
+        <label for="new-password">New Password:</label>
+        <input type="password" id="new-password" />
+        <label for="confirm-password">Confirm New Password:</label>
+        <input type="password" id="confirm-password" />
+        <button class="edit-btn" id="update-password-btn">
+          Update Password
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const editBtn = document.getElementById("edit-btn");
+      const saveBtn = document.getElementById("save-btn");
+      const changePasswordBtn = document.getElementById("change-password-btn");
+      const passwordModal = document.getElementById("password-modal");
+      const closeModalBtn = document.getElementById("close-modal");
+      const updatePasswordBtn = document.getElementById("update-password-btn");
+
+      const editableElements = document.querySelectorAll(".editable");
+      const currentPassword = document.getElementById("current-password");
+      const newPassword = document.getElementById("new-password");
+      const confirmPassword = document.getElementById("confirm-password");
+
+      let isEditing = false;
+
+      function toggleEdit() {
+        isEditing = !isEditing;
+        editableElements.forEach((el) => {
+          el.contentEditable = isEditing;
+          el.classList.toggle("editing", isEditing);
+        });
+        editBtn.textContent = isEditing ? "Cancel" : "Edit Profile";
+        saveBtn.classList.toggle("hidden", !isEditing);
+        changePasswordBtn.classList.toggle("hidden", isEditing);
+      }
+
+      function closeModal() {
+        passwordModal.classList.add("hidden");
+        currentPassword.value = "";
+        newPassword.value = "";
+        confirmPassword.value = "";
+      }
+
+      editBtn.addEventListener("click", toggleEdit);
+
+      saveBtn.addEventListener("click", () => {
+        toggleEdit();
+        // Here you would typically send the updated information to a server
+        alert("Profile updated successfully!");
+      });
+
+      changePasswordBtn.addEventListener("click", () => {
+        passwordModal.classList.remove("hidden");
+      });
+
+      closeModalBtn.addEventListener("click", closeModal);
+
+      updatePasswordBtn.addEventListener("click", () => {
+        if (newPassword.value !== confirmPassword.value) {
+          alert("New passwords don't match!");
+          return;
+        }
+        // Here you would typically send the password change request to a server
+        alert("Password updated successfully!");
+        closeModal();
+      });
+
+      // Close modal if clicking outside of it
+      passwordModal.addEventListener("click", (e) => {
+        if (e.target === passwordModal) {
+          closeModal();
+        }
+      });
+    </script>
+  </body>
+</html>
