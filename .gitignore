@@ -1,0 +1,8 @@
+*.env
+*.pdf
+*.png
+*.jpg
+*.rar
+*.zip
+*.ipynb
+node_modules/
