@@ -1,0 +1,118 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  padding: 20px;
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: 250px 1fr 300px;
+  gap: 20px;
+  padding: 20px;
+  height: calc(100vh - 100px);
+}
+
+.upload-section {
+  margin-bottom: 20px;
+}
+
+.pdf-names-container {
+  border-right: 1px solid #ccc;
+  padding-right: 20px;
+}
+
+.pdf-list {
+  list-style: none;
+  margin-top: 10px;
+}
+
+.pdf-list li {
+  padding: 8px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+
+.pdf-list li:hover {
+  background-color: #f0f0f0;
+}
+
+.pdf-viewer-container {
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #525659;
+}
+
+#pdfViewer {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  position: relative;
+}
+
+.text-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.text-area {
+  flex-grow: 1;
+  padding: 10px;
+  resize: none;
+}
+
+.btn-a {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-a:hover {
+  background-color: #0056b3;
+}
+
+/* PDF.js viewer styles */
+.textLayer {
+  opacity: 1;
+  mix-blend-mode: multiply;
+  pointer-events: auto;
+}
+
+.textLayer > span {
+  color: transparent;
+  position: absolute;
+  white-space: pre;
+  cursor: text;
+  transform-origin: 0% 0%;
+}
+
+.textLayer ::selection {
+  background: rgba(255, 255, 0, 0.3);
+}
+
+/* Ensure text layer aligns properly */
+.textLayer > span {
+  border: solid 1px transparent;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+}
+
+.textLayer > span:hover {
+  background: rgba(255, 255, 0, 0.1);
+}
+
+/* Highlight layer styles */
+.highlight-layer {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}

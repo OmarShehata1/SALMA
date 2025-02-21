@@ -1,0 +1,15 @@
+flask-cors
+Flask[async]
+pymupdf
+google-generativeai
+langchain
+faiss-cpu
+langchain
+langchain-google-genai
+gunicorn
+Pillow
+torch
+typing-extensions
+transformers
+numpy
+opencv-python

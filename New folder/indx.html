@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher | Generation & Evaluation</title>
+
+    <!-- PDF.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf_viewer.min.css"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="upload-section">
+        <h2>Upload PDF Files</h2>
+        <input type="file" id="pdfInput" accept="application/pdf" multiple />
+      </div>
+    </div>
+    <button id="prevPage">Previous</button>
+    <input type="number" id="pageNumber" value="1" />
+    <button id="nextPage">Next</button>
+    <div class="main-container">
+      <!-- Container for PDF Names -->
+      <div class="pdf-names-container">
+        <h3>Uploaded PDFs:</h3>
+        <ul id="pdfList" class="pdf-list"></ul>
+      </div>
+
+      <!-- Container for PDF Viewer -->
+      <div class="pdf-viewer-container">
+        <div id="viewerContainer">
+          <div id="pdfViewer"></div>
+        </div>
+      </div>
+
+      <div class="text-selection">
+        <textarea
+          class="text-area"
+          id="selectedText"
+          cols="30"
+          rows="10"
+        ></textarea>
+        <button class="btn-a" type="submit">Submit</button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
